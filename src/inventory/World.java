@@ -1,3 +1,4 @@
+
 package inventory;
 
 import java.util.ArrayList;
@@ -31,8 +32,7 @@ public class World {
                         "You entered the security room. There is equipment."));
 
         Room laboratory = new Room("Laboratory",
-                descriptions.getOrDefault("Laboratory",
-                        "You are in a mysterious laboratory."));
+                "You are in a mysterious laboratory. A woman named Emily is locked inside a cell.");
 
         Room lockedbasement = new Room("Locked Basement",
                 descriptions.getOrDefault("Locked Basement",
@@ -80,6 +80,9 @@ public class World {
         hallway.addItem(new Item("Security Key"));
 
         lockedbasement.addItem(new Item("Basement Key"));
+
+        Emily emily = new Emily();
+        laboratory.addNPC(emily);
 
         return bedroom;
     }

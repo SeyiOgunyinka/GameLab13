@@ -17,7 +17,6 @@ public class Game {
 
     private static boolean codeDiscovered = false;
 
-    // Use the same save-file location for saving and loading
     private static final File SAVE_FILE =
             new File(System.getProperty("user.home"), "saveFile.txt");
 
@@ -230,7 +229,6 @@ public class Game {
         }
     }
 
-    // SAVE GAME
     public static void saveGame() {
 
         if (currentRoom == null) {
@@ -255,7 +253,6 @@ public class Game {
         }
     }
 
-    // LOAD GAME
     @SuppressWarnings("unchecked")
     public static void loadGame() {
 
@@ -308,6 +305,23 @@ public class Game {
 
     public static Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public static void talkToNPC(String npcName) {
+
+        if (currentRoom == null) {
+            print("You are not in a room.");
+            return;
+        }
+
+        NPC npc = currentRoom.getNPC(npcName);
+
+        if (npc == null) {
+            print("That NPC is not in this room.");
+            return;
+        }
+
+        npc.talk();
     }
 
     public static void main(String[] args) {

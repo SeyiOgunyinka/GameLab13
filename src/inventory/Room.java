@@ -1,3 +1,4 @@
+
 package inventory;
 
 import java.io.Serializable;
@@ -12,6 +13,8 @@ public class Room implements Serializable {
     private Room[] exits;
     private HashMap<String, Item> items;
 
+    private HashMap<String, NPC> npcs;
+
     private boolean locked;
 
     public Room(String name, String description) {
@@ -20,6 +23,8 @@ public class Room implements Serializable {
         exits = new Room[6];
 
         items = new HashMap<>();
+
+        npcs = new HashMap<>();
 
         locked = false;
     }
@@ -86,6 +91,20 @@ public class Room implements Serializable {
         }
 
         return item;
+    }
+
+    public void addNPC(NPC npc) {
+        if (npc != null) {
+            npcs.put(npc.getName().toLowerCase(), npc);
+        }
+    }
+
+    public NPC getNPC(String npcName) {
+        if (npcName == null) {
+            return null;
+        }
+
+        return npcs.get(npcName.toLowerCase());
     }
 
     public String toString() {

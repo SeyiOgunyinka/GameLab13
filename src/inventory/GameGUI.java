@@ -121,6 +121,11 @@ public class GameGUI extends JFrame {
             return;
         }
 
+        if (command.startsWith("talk to ")) {
+            Game.talkToNPC(command.substring(8).trim());
+            return;
+        }
+
         switch (command) {
 
             case "east":
@@ -156,7 +161,7 @@ public class GameGUI extends JFrame {
             default:
                 displayMessage(
                     "Invalid command. Try directions, take, use, "
-                    + "open, close, read, inventory, save, load, or exit."
+                    + "open, close, read, talk to, inventory, save, load, or exit."
                 );
                 break;
         }
